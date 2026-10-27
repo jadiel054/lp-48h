@@ -7,6 +7,7 @@ const leadSchema = z.object({
   whatsapp: z.string().min(10, "WhatsApp inválido"),
   email: z.string().email().optional().or(z.literal("")),
   niche: z.string().min(2, "Informe o nicho"),
+  about: z.string().max(5000, "Máximo de 5000 caracteres").optional().or(z.literal("")),
 });
 
 export async function POST(req: NextRequest) {
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, whatsapp, email, niche } = parsed.data;
+    const { name, whatsapp, email, niche, about } = parsed.data;
 
     const databaseUrl = process.env.DATABASE_URL;
     if (!databaseUrl) {
@@ -35,8 +36,8 @@ export async function POST(req: NextRequest) {
     const sql = neon(databaseUrl);
 
     await sql`
-      INSERT INTO leads (name, whatsapp, email, niche, status)
-      VALUES (${name}, ${whatsapp}, ${email || null}, ${niche}, 'new')
+      INSERT INTO leads (name, whatsapp, email, niche, about, status)
+      VALUES (${name}, ${whatsapp}, ${email || null}, ${niche}, ${about || null}, 'new')
     `;
 
     return NextResponse.json({ ok: true });
