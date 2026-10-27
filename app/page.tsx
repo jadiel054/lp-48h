@@ -2,10 +2,34 @@
 
 import { useState } from "react";
 
+const faqs = [
+  {
+    question: "Funciona para qualquer nicho?",
+    answer:
+      "Sim. O modelo funciona especialmente bem para serviços locais, profissionais liberais e negócios que vendem por WhatsApp ou anúncio (clínicas, salões, reformas, estética, advocacia, etc.).",
+  },
+  {
+    question: "Preciso ter domínio?",
+    answer:
+      "Não é obrigatório. Podemos entregar em um link .vercel.app ou você aponta o seu domínio depois.",
+  },
+  {
+    question: "Posso pedir alterações depois?",
+    answer:
+      "Sim. Está inclusa 1 rodada de revisão. Alterações extras podem ser combinadas à parte.",
+  },
+  {
+    question: "Como funciona o pagamento?",
+    answer:
+      "Eu monto a página primeiro. Você recebe o link, avalia o resultado no ar e só faz o PIX se gostar. Risco zero para você.",
+  },
+];
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,7 +66,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pb-24">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
@@ -258,9 +282,7 @@ export default function Home() {
                 />
               </div>
 
-              {error && (
-                <p className="text-red-400 text-sm">{error}</p>
-              )}
+              {error && <p className="text-red-400 text-sm">{error}</p>}
 
               <button
                 type="submit"
@@ -278,50 +300,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ Accordion */}
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-white mb-12">
             Perguntas frequentes
           </h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-1">
-                Funciona para qualquer nicho?
-              </h3>
-              <p className="text-slate-400">
-                Sim. O modelo funciona especialmente bem para serviços locais,
-                profissionais liberais e negócios que vendem por WhatsApp ou anúncio
-                (clínicas, salões, reformas, estética, advocacia, etc.).
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-1">
-                Preciso ter domínio?
-              </h3>
-              <p className="text-slate-400">
-                Não é obrigatório. Podemos entregar em um link .vercel.app ou você
-                aponta o seu domínio depois.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-1">
-                Posso pedir alterações depois?
-              </h3>
-              <p className="text-slate-400">
-                Sim. Está inclusa 1 rodada de revisão. Alterações extras podem ser
-                combinadas à parte.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-1">
-                Como funciona o pagamento?
-              </h3>
-              <p className="text-slate-400">
-                Eu monto a página primeiro. Você recebe o link, avalia o resultado
-                no ar e só faz o PIX se gostar. Risco zero para você.
-              </p>
-            </div>
+          <div className="space-y-3">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="rounded-xl border border-slate-700/60 bg-slate-800/40 overflow-hidden"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full flex items-center justify-between px-5 py-4 text-left"
+                >
+                  <span className="font-semibold text-white pr-4">{faq.question}</span>
+                  <span className="text-slate-400 text-xl flex-shrink-0">
+                    {openFaq === index ? "−" : "+"}
+                  </span>
+                </button>
+                {openFaq === index && (
+                  <div className="px-5 pb-4 text-slate-400 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -330,6 +337,16 @@ export default function Home() {
       <footer className="py-10 border-t border-slate-800 text-center text-slate-500 text-sm">
         <p>Landing Page em 48h · Entrega rápida · Você só paga depois de aprovar</p>
       </footer>
+
+      {/* Floating CTA Button */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent">
+        <a
+          href="#formulario"
+          className="flex items-center justify-center w-full max-w-md mx-auto py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base shadow-lg shadow-blue-600/40 transition-colors"
+        >
+          Quero minha Landing Page em 48h
+        </a>
+      </div>
     </main>
   );
 }
