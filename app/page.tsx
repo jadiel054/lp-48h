@@ -66,7 +66,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen pb-24">
+    <main className="min-h-screen">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
@@ -338,15 +338,25 @@ export default function Home() {
         <p>Landing Page em 48h · Entrega rápida · Você só paga depois de aprovar</p>
       </footer>
 
-      {/* Floating CTA Button */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent">
-        <a
-          href="#formulario"
-          className="flex items-center justify-center w-full max-w-md mx-auto py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base shadow-lg shadow-blue-600/40 transition-colors"
+      {/* Floating round CTA button - bottom right */}
+      <a
+        href="#formulario"
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/50 transition-all hover:scale-110 active:scale-95"
+        aria-label="Quero minha Landing Page em 48h"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="w-7 h-7"
         >
-          Quero minha Landing Page em 48h
-        </a>
-      </div>
+          <path
+            fillRule="evenodd"
+            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </a>
     </main>
   );
 }
