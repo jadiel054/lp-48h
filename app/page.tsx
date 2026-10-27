@@ -49,7 +49,7 @@ export default function Home() {
         <div className="relative max-w-5xl mx-auto px-4 py-20 sm:py-28 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-sm font-medium rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Entrega em até 48 horas
+            Entrega garantida em até 48 horas
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
@@ -62,8 +62,9 @@ export default function Home() {
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10">
-            Pare de perder clientes por falta de página. Receba uma página de alta
-            conversão pronta para rodar anúncio ou WhatsApp em até 2 dias úteis.
+            Pare de perder clientes todos os dias porque não tem uma página profissional.
+            Eu entrego uma landing page de alta conversão pronta para rodar anúncio
+            ou WhatsApp em até 2 dias úteis.
           </p>
 
           <a
@@ -74,7 +75,7 @@ export default function Home() {
           </a>
 
           <p className="mt-6 text-sm text-slate-400">
-            Sem mensalidade · Sem contrato longo · Entrega garantida
+            Sem mensalidade · Sem contrato longo · Você só paga depois de ver o resultado
           </p>
         </div>
       </section>
@@ -154,7 +155,7 @@ export default function Home() {
                   Eu monto a página em até 48h
                 </h3>
                 <p className="text-slate-400">
-                  Você recebe o link da página pronta + instruções simples de PIX.
+                  Você recebe o link da página pronta para avaliar.
                 </p>
               </div>
             </div>
@@ -164,10 +165,10 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-white mb-1">
-                  Você começa a usar
+                  Você aprova e só então paga
                 </h3>
                 <p className="text-slate-400">
-                  Coloca no Instagram, roda anúncio ou manda pro WhatsApp. Pronto.
+                  Viu o resultado no ar? Gostou? Aí sim faz o PIX. Risco zero para você.
                 </p>
               </div>
             </div>
@@ -185,8 +186,11 @@ export default function Home() {
             <div className="text-5xl font-bold text-white mb-2">
               R$ 1.497
             </div>
-            <p className="text-slate-400">
+            <p className="text-slate-400 mb-3">
               Pagamento único · Entrega em 48h · 1 revisão inclusa
+            </p>
+            <p className="text-sm text-green-400 font-medium">
+              Você só paga depois de ver a página no ar e aprovar o resultado
             </p>
           </div>
 
@@ -287,7 +291,8 @@ export default function Home() {
               </h3>
               <p className="text-slate-400">
                 Sim. O modelo funciona especialmente bem para serviços locais,
-                profissionais liberais e negócios que vendem por WhatsApp ou anúncio.
+                profissionais liberais e negócios que vendem por WhatsApp ou anúncio
+                (clínicas, salões, reformas, estética, advocacia, etc.).
               </p>
             </div>
             <div>
@@ -313,8 +318,8 @@ export default function Home() {
                 Como funciona o pagamento?
               </h3>
               <p className="text-slate-400">
-                Após o contato inicial você recebe o PIX. O trabalho só começa após a
-                confirmação do pagamento.
+                Eu monto a página primeiro. Você recebe o link, avalia o resultado
+                no ar e só faz o PIX se gostar. Risco zero para você.
               </p>
             </div>
           </div>
@@ -323,7 +328,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-10 border-t border-slate-800 text-center text-slate-500 text-sm">
-        <p>Landing Page em 48h · Entrega rápida · Foco em resultado</p>
+        <p>Landing Page em 48h · Entrega rápida · Você só paga depois de aprovar</p>
       </footer>
     </main>
   );
