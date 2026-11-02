@@ -163,7 +163,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
         <div className="relative max-w-5xl mx-auto px-4 py-20 sm:py-28 text-center">
@@ -197,7 +196,7 @@ export default function Home() {
             <a
               href={WA_LINK}
               target="_blank"
- transitivity="noopener noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold text-white bg-green-600 hover:bg-green-500 rounded-xl shadow-lg shadow-green-600/30 transition-all hover:scale-105"
             >
               <span aria-hidden>💬</span> Falar no WhatsApp
@@ -210,47 +209,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefícios */}
       <section className="py-20 bg-slate-900/50">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-white mb-12">
-            O que você recebe
-          </h2>
+          <h2 className="text-3xl font-bold text-center text-white mb-12">O que você recebe</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50">
-              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 text-2xl mb-4">
-                ⚡
-              </div>
+              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 text-2xl mb-4">⚡</div>
               <h3 className="text-xl font-semibold text-white mb-2">Entrega em 48h</h3>
-              <p className="text-slate-400">
-                Você preenche o briefing e em até 2 dias úteis a página está no ar.
-              </p>
+              <p className="text-slate-400">Você preenche o briefing e em até 2 dias úteis a página está no ar.</p>
             </div>
-
             <div className="p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50">
-              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-green-500/10 text-green-400 text-2xl mb-4">
-                💳
-              </div>
+              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-green-500/10 text-green-400 text-2xl mb-4">💳</div>
               <h3 className="text-xl font-semibold text-white mb-2">PIX + WhatsApp prontos</h3>
-              <p className="text-slate-400">
-                Botão de pagamento PIX e link direto pro seu WhatsApp já configurados.
-              </p>
+              <p className="text-slate-400">Botão de pagamento PIX e link direto pro seu WhatsApp já configurados.</p>
             </div>
-
             <div className="p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50">
-              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-purple-500/10 text-purple-400 text-2xl mb-4">
-                🎯
-              </div>
+              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-purple-500/10 text-purple-400 text-2xl mb-4">🎯</div>
               <h3 className="text-xl font-semibold text-white mb-2">Foco em conversão</h3>
-              <p className="text-slate-400">
-                Design pensado para gerar leads e vendas, não só para &quot;ficar bonito&quot;.
-              </p>
+              <p className="text-slate-400">Design pensado para gerar leads e vendas, não só para ficar bonito.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Como funciona */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-white mb-12">Como funciona</h2>
@@ -273,16 +254,13 @@ export default function Home() {
               <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white">3</div>
               <div>
                 <h3 className="text-xl font-semibold text-white mb-1">Você aprova e só então paga no PIX</h3>
-                <p className="text-slate-400">
-                  Viu o resultado no ar? Gostou? Aí sim faz o PIX de {PRICE}. Risco zero para você.
-                </p>
+                <p className="text-slate-400">Viu o resultado no ar? Gostou? Aí sim faz o PIX de {PRICE}. Risco zero para você.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Preço + Formulário */}
       <section id="formulario" className="py-20 bg-slate-900/50">
         <div className="max-w-xl mx-auto px-4">
           <div className="text-center mb-10">
@@ -298,9 +276,7 @@ export default function Home() {
             <div className="p-8 rounded-2xl bg-green-500/10 border border-green-500/30 text-center space-y-4">
               <div className="text-4xl">✅</div>
               <h3 className="text-xl font-semibold text-green-300">Recebemos seu pedido!</h3>
-              <p className="text-slate-300">
-                Em breve você recebe uma mensagem no WhatsApp. Se preferir, chame agora:
-              </p>
+              <p className="text-slate-300">Em breve você recebe uma mensagem no WhatsApp. Se preferir, chame agora:</p>
               <a
                 href={WA_LINK}
                 target="_blank"
@@ -317,35 +293,16 @@ export default function Home() {
             <form onSubmit={handleSubmit} className="p-8 rounded-2xl bg-slate-800/60 border border-slate-700/50 space-y-5">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1.5">Seu nome</label>
-                <input
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Como você se chama?"
-                />
+                <input name="name" required className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Como você se chama?" />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1.5">WhatsApp (com DDD)</label>
-                <input
-                  name="whatsapp"
-                  required
-                  type="tel"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="11 99999-9999"
-                />
+                <input name="whatsapp" required type="tel" className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="11 99999-9999" />
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1.5">E-mail (opcional)</label>
-                <input
-                  name="email"
-                  type="email"
-                  className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="seu@email.com"
-                />
+                <input name="email" type="email" className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="seu@email.com" />
               </div>
-
               <div className="relative">
                 <label className="block text-sm font-medium text-slate-300 mb-1.5">Qual o seu nicho?</label>
                 <input
@@ -386,55 +343,28 @@ export default function Home() {
                   </div>
                 )}
               </div>
-
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1.5">
-                  Conte mais sobre o seu negócio (opcional)
-                </label>
+                <label className="block text-sm font-medium text-slate-300 mb-1.5">Conte mais sobre o seu negócio (opcional)</label>
                 <textarea
                   value={about}
                   onChange={(e) => setAbout(e.target.value)}
                   rows={4}
-                  className={`w-full px-4 py-3 rounded-xl bg-slate-900 border text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y ${
-                    aboutExceeded ? "border-red-500" : "border-slate-600"
-                  }`}
+                  className={`w-full px-4 py-3 rounded-xl bg-slate-900 border text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y ${aboutExceeded ? "border-red-500" : "border-slate-600"}`}
                   placeholder="Ex: principais serviços, diferencial, público-alvo..."
                 />
-                <div
-                  className={`text-right text-xs mt-1 ${
-                    aboutExceeded ? "text-red-400" : "text-slate-500"
-                  }`}
-                >
-                  {aboutLength}/5000
-                </div>
+                <div className={`text-right text-xs mt-1 ${aboutExceeded ? "text-red-400" : "text-slate-500"}`}>{aboutLength}/5000</div>
               </div>
-
               {error && <p className="text-red-400 text-sm">{error}</p>}
-
-              <button
-                type="submit"
-                disabled={loading || aboutExceeded}
-                className="w-full py-4 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-semibold text-lg transition-colors"
-              >
+              <button type="submit" disabled={loading || aboutExceeded} className="w-full py-4 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-semibold text-lg transition-colors">
                 {loading ? "Enviando..." : "Quero minha Landing Page em 48h"}
               </button>
-
-              <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center py-3 rounded-xl border border-green-500/40 text-green-300 hover:bg-green-500/10 font-medium"
-              >
+              <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="block w-full text-center py-3 rounded-xl border border-green-500/40 text-green-300 hover:bg-green-500/10 font-medium">
                 Prefiro falar no WhatsApp agora
               </a>
-
-              <p className="text-center text-xs text-slate-500">
-                Ao enviar você concorda em ser contactado via WhatsApp sobre este serviço.
-              </p>
+              <p className="text-center text-xs text-slate-500">Ao enviar você concorda em ser contactado via WhatsApp sobre este serviço.</p>
             </form>
           )}
 
-          {/* PIX info card */}
           <div className="mt-8 p-5 rounded-2xl bg-slate-800/40 border border-slate-700/50 text-center">
             <p className="text-sm text-slate-400 mb-1">Pagamento após aprovação · PIX</p>
             <p className="text-lg font-mono font-semibold text-white tracking-wide">{PIX_KEY}</p>
@@ -443,24 +373,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-white mb-12">Perguntas frequentes</h2>
           <div className="space-y-3">
             {faqs.map((faq, index) => (
               <div key={index} className="rounded-xl border border-slate-700/60 bg-slate-800/40 overflow-hidden">
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex items-center justify-between px-5 py-4 text-left"
-                >
+                <button type="button" onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full flex items-center justify-between px-5 py-4 text-left">
                   <span className="font-semibold text-white pr-4">{faq.question}</span>
                   <span className="text-slate-400 text-xl flex-shrink-0">{openFaq === index ? "−" : "+"}</span>
                 </button>
-                {openFaq === index && (
-                  <div className="px-5 pb-4 text-slate-400 leading-relaxed">{faq.answer}</div>
-                )}
+                {openFaq === index && <div className="px-5 pb-4 text-slate-400 leading-relaxed">{faq.answer}</div>}
               </div>
             ))}
           </div>
@@ -474,7 +397,6 @@ export default function Home() {
         </a>
       </footer>
 
-      {/* Floating WhatsApp */}
       <a
         href={WA_LINK}
         target="_blank"
