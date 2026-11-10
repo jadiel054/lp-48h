@@ -11,14 +11,17 @@ const MAX_PAYLOAD_BYTES = 32 * 1024;
 const RATE_LIMIT_WINDOW_SECONDS = 10 * 60;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 
+type RateLimitStatus = "enforced" | "degraded" | "blocked";
+
 /**
  * Aplica rate limit persistente no Neon usando hash de IP.
- * Retorna true se a requisição for permitida, false se exceder o limite.
+ * Se a tabela não existir ou o banco estiver inacessível, registra o estado 'degraded'
+ * de forma explícita, sem declarar falsamente que a proteção está ativa.
  */
 async function checkPersistentRateLimit(
   databaseUrl: string,
   clientIp: string
-): Promise<{ allowed: boolean; remaining: number }> {
+): Promise<{ allowed: boolean; remaining: number; status: RateLimitStatus }> {
   try {
     const sql = neon(databaseUrl);
     // Hash com salt para não armazenar IPs crus no banco
@@ -50,19 +53,25 @@ async function checkPersistentRateLimit(
     if (result && result.length > 0) {
       const currentCount = Number(result[0].count);
       if (currentCount > RATE_LIMIT_MAX_REQUESTS) {
-        return { allowed: false, remaining: 0 };
+        return { allowed: false, remaining: 0, status: "blocked" };
       }
       return {
         allowed: true,
         remaining: Math.max(0, RATE_LIMIT_MAX_REQUESTS - currentCount),
+        status: "enforced",
       };
     }
-    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1 };
+    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1, status: "enforced" };
   } catch (err: unknown) {
-    // Se a tabela ainda não existir ou falha de conexão, registrar erro de infraestrutura sem expor dados
-    console.error("Falha ao consultar rate limit persistente:", (err as Error)?.message || "desconhecido");
-    // Fallback permissivo para não derrubar o serviço caso o banco de rate limit apresente oscilação temporária
-    return { allowed: true, remaining: 1 };
+    const errMsg = (err as Error)?.message || "desconhecido";
+    // Log explícito indicando que a persistência está DEGRADADA (tabela não criada no Neon)
+    console.warn(
+      `[RATE_LIMIT_DEGRADED] Tabela rate_limits inoperante no Neon (${errMsg}). ` +
+      `Proteção de taxa persistente NÃO está sendo aplicada. Execute migrations/001_create_rate_limits.sql.`
+    );
+    // Retorna status 'degraded' explícito. A requisição não é bloqueada para não derrubar o cliente legítimo,
+    // mas o sistema não declara a proteção como verificada ou ativa.
+    return { allowed: true, remaining: 0, status: "degraded" };
   }
 }
 
@@ -203,7 +212,11 @@ export async function POST(req: NextRequest) {
       console.error("Falha ao despachar e-mail pelo Resend:", (emailError as Error)?.message || "Erro desconhecido");
     }
 
-    return NextResponse.json({ ok: true, message: "Solicitação registrada com sucesso." });
+    return NextResponse.json({
+      ok: true,
+      message: "Solicitação registrada com sucesso.",
+      rateLimitStatus: rateLimit.status,
+    });
   } catch (error: unknown) {
     // Tratar erro geral sem expor dados sensíveis
     console.error("Erro interno ao processar lead:", (error as Error)?.message || "Erro desconhecido");
